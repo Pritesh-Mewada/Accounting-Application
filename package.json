@@ -1,0 +1,22 @@
+{
+  "name": "nilashish_gold_management",
+  "version": "1.0.0",
+  "description": "myproject",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "hello",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/nilashish.git"
+  },
+  "author": "pritesh",
+  "license": "ISC"
+}
