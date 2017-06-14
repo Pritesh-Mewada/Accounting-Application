@@ -1,0 +1,53 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Make a new Issue</h2>
+        <span flex></span>
+        
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div flex-gt-md>
+          <md-datepicker ng-model="profile.date" md-placeholder="Enter date"></md-datepicker>
+        </div>
+
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Gross Weight</label>
+          <md-icon md-svg-src="img/icons/grossweight.svg" class="name"></md-icon>
+          <input ng-model="profile.grossweight" type="number" required>
+        </md-input-container>
+         <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Fine</label>
+          <md-icon md-svg-src="img/icons/fine.svg" class="name"></md-icon>
+          <input ng-model="profile.fine" type="number" required>
+        </md-input-container>
+        <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Wastage</label>
+          <md-icon md-svg-src="img/icons/fine.svg" class="name"></md-icon>
+          <input ng-model="profile.wastage" type="number" required>
+        </md-input-container> 
+         <md-input-container class="md-icon-float md-block">
+          <!-- Use floating label instead of placeholder -->
+          <label>Comment</label>
+          <md-icon md-svg-src="img/icons/comment.svg" class="name"></md-icon>
+          <input ng-model="profile.comment" type="text">
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button  class="ourbutton" ng-click="hello()">
+        Insert
+      </md-button>
+      <md-button  class="md-raised md-primary" ng-click="close()">
+        Cancel
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

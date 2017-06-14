@@ -1,0 +1,69 @@
+<div >
+    <br>
+    <center>
+        <h1>Issue-<strong>{{name}}</strong></h1>
+    </center>
+    
+    <div>
+        <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" >
+            <md-grid-tile md-colspan="5" md-colspan-xs="2"  md-rowspan="1" >
+                <div flex-gt-md>
+                    <md-datepicker ng-model="data.from" md-placeholder="From date" ng-change="sortDate()"></md-datepicker>
+                </div>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="5" md-colspan-xs="2"  md-rowspan="1" >
+                <div flex-gt-md>
+                    <md-datepicker ng-model="data.to" md-placeholder="To date" ng-change="sortDate()"></md-datepicker>
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+        <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" >
+
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Date</h4>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Gr.Wt</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Fine</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Fine.Wt</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Cmmt</h4>
+            </md-grid-tile>
+            
+        </md-grid-list>
+        <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" ng-repeat ="profile in profiles">
+
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{getDate(profile.date)}}</h4>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{profile.grossweight}}</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{profile.fine}}</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{profile.fineweight}}</h4>
+            </md-grid-tile>
+           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{profile.comment}}</h4>
+            </md-grid-tile>
+            
+        </md-grid-list>
+        <center>
+            <label class="themeFont" >Your total fine weight&nbsp&nbsp&nbsp</label><label class="themeFont" style="color: green;">{{fineWeight}}</label>
+        </center>
+        
+    
+    </div>
+
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="showAdvanced($event)">New Entry</md-button>
+    </section>
+    <br><br>
+</div>

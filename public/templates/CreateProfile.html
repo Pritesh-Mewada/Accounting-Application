@@ -1,0 +1,37 @@
+<div layout="column" layout-padding ng-cloak class="align_center"  >
+
+    <h1>Create Profile</h1>
+    <md-content class="md-no-momentum">
+
+        <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Name</label>
+            <md-icon md-svg-src="img/icons/user.svg" class="name"></md-icon>
+            <input ng-model="user.name" type="text" required>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Email</label>
+            <md-icon md-svg-src="img/icons/003-mail.svg" class="name"></md-icon>
+            <input ng-model="user.email" type="email">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Telephone</label>
+            <md-icon md-svg-src="img/icons/004-mobile-phone.svg" class="name"></md-icon>
+            <input ng-model="user.telephone" type="number">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>Address</label>
+            <md-icon md-svg-src="img/icons/002-notebook.svg" class="name"></md-icon>
+            <textarea ng-model="user.address" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button class="md-raised md-primary" ng-click="submit()">Create</md-button>
+        </section>
+    </md-content>
+</div>
