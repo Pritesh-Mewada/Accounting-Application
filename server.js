@@ -105,6 +105,6 @@ app.get('/test',function(req,res){
   res.send("hello");
 });
 
-app.listen('3333',()=>{
+app.listen(process.env.PORT ||'3333',()=>{
   console.log("hello i am started");
 })
