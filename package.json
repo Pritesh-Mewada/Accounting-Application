@@ -1,8 +1,11 @@
 {
-  "name": "nilashish_gold_management",
+  "name": "pritesh",
   "version": "1.0.0",
-  "description": "myproject",
+  "description": "trial 1 ",
   "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
@@ -10,13 +13,17 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "hello",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.heroku.com/nilashish.git"
+    "url": "git+https://github.com/Pritesh-Mewada/pritesh-nilashish.git"
   },
   "author": "pritesh",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pritesh-Mewada/pritesh-nilashish/issues"
+  },
+  "homepage": "https://github.com/Pritesh-Mewada/pritesh-nilashish#readme"
 }
