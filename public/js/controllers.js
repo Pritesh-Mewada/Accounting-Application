@@ -78,6 +78,38 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
     console.log("i am called");
     $scope.customFullscreen = false;
     $scope.name = DataPasser.getData().name;
+    
+    $scope.edit =function(data,indexing){
+      
+      var dataset = {
+        name: DataPasser.getData().name,
+        update:true,
+        profile:data,
+        index:indexing
+      }
+      DataPasser.setData(dataset);
+      console.log(indexing);
+      $scope.showAdvanced();
+    } 
+    $scope.delete = function(iid,index){
+      console.log("Delete index :  "+index+"Having id: "+iid);
+      $scope.profiles.splice(index, 1);
+      var data ={
+        id:iid
+      }
+      calcFineWeight();
+      PostService.async('/delete/'+$scope.name,data).then(function(response){
+        console.log(response);
+        if(response){
+          console.log("data deleted");
+
+        }
+      },function(error){
+        if(error){
+          console.log("error");
+        }
+      })
+    }
     var calcFineWeight = function(){
       $scope.fineWeight ="";
       var temp=0; 
@@ -91,7 +123,7 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
       
       $scope.profiles=response.data;
       $scope.mainData=response.data;
-      
+      console.log(response);
       calcFineWeight();
     },function(error){
       console.log(error);
@@ -108,13 +140,16 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
     }
     
     $scope.getDate =function(date){
+      if(date ===undefined){
+        return;
+      }
       var newDate = new Date(date.substring(0,10));
       return newDate.getDate() +"/" + (newDate.getMonth()+1) +"/" + newDate.getFullYear().toString().substring(2,4);
     }
 
     var getNewObject =function(model){
       var profile = {
-         date:model.date,
+          date:model.date,
           grossweight:model.grossweight,
           fine:model.fine,
           comment:model.comment,
@@ -128,6 +163,12 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
         $scope.fineWeight = $scope.fineWeight + DataPasser.getData().fineweight;
       });
 
+     $rootScope.$on("dataUpdated", function(data){
+        
+        var temp=getNewObject(DataPasser.getData());
+        $scope.profiles[DataPasser.getData().index]=temp;
+        
+      });
      var getStandard = function(newDate){
         return newDate.getFullYear().toString()+"-"+(newDate.getMonth()) +"-" + newDate.getDate();
       }
@@ -162,11 +203,23 @@ control.controller('modalcontrol' ,function($scope,$mdDialog,PostService,DataPas
     comment:'',
     date:''
   };
+
   $scope.profile.name = DataPasser.getData().name;
+  console.log(DataPasser.getData().index)
+  if(DataPasser.getData().update==true){
+    $scope.profile.grossweight=DataPasser.getData().profile.grossweight;
+    $scope.profile.fine=DataPasser.getData().profile.fine;
+    $scope.profile.comment=DataPasser.getData().profile.comment;
+    $scope.profile.date= new Date(DataPasser.getData().profile.date.toString().substring(0,10)) ;
+    $scope.profile.id=DataPasser.getData().profile._id;
+    $scope.profile.index = DataPasser.getData().index;
+  }
+  
   $scope.hello = function(){
+      
       for(var a in $scope.profile){
         console.log(a);
-        if($scope.profile[a] == '' && a !='comment'){
+        if($scope.profile[a] == '' && a !='comment' && a !='index' ){
           alert("Please fill " + a);
           return;  
         }
@@ -175,20 +228,33 @@ control.controller('modalcontrol' ,function($scope,$mdDialog,PostService,DataPas
         alert("Fine is in Percentage");
         return;
       }
-
-
       $scope.profile.fineweight =  ($scope.profile.fine ) * $scope.profile.grossweight/100;
-      console.log($scope.profile);
-      PostService.async("/insertData/issue",$scope.profile).then(function(response){
-      console.log(response);
-        if(response.data=="Success"){
-          $scope.profile.date = $scope.profile.date.getFullYear()+"-"+$scope.profile.date.getMonth()+"-"+$scope.profile.date.getDate();
-          DataPasser.setData($scope.profile);
-          $rootScope.$emit("dataInserted");
-        }
-      },function(error){
-      console.log(error);
-      })
+      $scope.profile.date = $scope.profile.date.getFullYear()+"-"+($scope.profile.date.getMonth()+1)+"-"+$scope.profile.date.getDate();
+      if(DataPasser.getData().update==true){
+        PostService.async("/updateData/issue",$scope.profile).then(function(response){
+          console.log(response);
+          if(response.data=="Success"){
+            DataPasser.setData($scope.profile);
+            $rootScope.$emit("dataUpdated");
+          }
+        },function(error){
+        console.log(error);
+        });  
+      
+      }else{
+        console.log($scope.profile);
+        PostService.async("/insertData/issue",$scope.profile).then(function(response){
+          console.log(response);
+          if(response.data=="Success"){
+            DataPasser.setData($scope.profile);
+            $rootScope.$emit("dataInserted");
+          }
+        },function(error){
+        console.log(error);
+        });
+      }
+
+      
 
       $mdDialog.hide();
       }

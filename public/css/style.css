@@ -30,3 +30,11 @@ text-align: left;
 	font-size: 18px;
 	font-weight: bold;
 }
+.cancel{
+	float: right ; 
+	margin-right: 5px;
+	
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}

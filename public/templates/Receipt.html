@@ -1,24 +1,19 @@
-<div >
+<div>
     <br>
     <center>
         <h1>Receipt-<strong>{{name}}</strong></h1>
     </center>
     <div>
         <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" >
-            <md-grid-tile md-colspan="5" md-colspan-xs="2"  md-rowspan="1" >
-                <div flex-gt-md>
-                    <md-datepicker ng-model="data.from" md-placeholder="From date" ng-change="sortDate()"></md-datepicker>
-                </div>
+            <md-grid-tile md-colspan="5" md-colspan-xs="10"  md-rowspan="1" >
+                <md-datepicker ng-model="data.from" md-placeholder="From date" ng-change="sortDate()"></md-datepicker>
             </md-grid-tile>
-            <md-grid-tile md-colspan="5" md-colspan-xs="2"  md-rowspan="1" >
-                <div flex-gt-md>
+            <md-grid-tile md-colspan="5" md-colspan-xs="10"  md-rowspan="1" >
                     <md-datepicker ng-model="data.to" md-placeholder="To date" ng-change="sortDate()"></md-datepicker>
-                </div>
             </md-grid-tile>
         </md-grid-list>
         <md-grid-list md-cols="12" md-gutter="5px" md-row-height="50px" >
-
-           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>Date</h4>
             </md-grid-tile>
             <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
@@ -37,7 +32,7 @@
                 <h4>Cmmt</h4>
             </md-grid-tile>
         </md-grid-list>
-        <md-grid-list md-cols="12" md-gutter="5px" md-row-height="50px" ng-repeat =" profile in profiles" >
+        <md-grid-list md-cols="12" md-gutter="5px" md-row-height="50px" ng-repeat =" profile in profiles" ng-dblclick="hello();" >
 
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>{{getDate(profile.date)}}</h4>
@@ -57,6 +52,7 @@
             <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>{{profile.comment}}</h4>
             </md-grid-tile>
+             <md-icon md-svg-src="img/icons/error.svg" class="cancel" ></md-icon>
         </md-grid-list>
         <center>
             <label class="themeFont" >Your total fine weight&nbsp&nbsp&nbsp</label><label class="themeFont" style="color: green;">{{fineWeight}}</label>
