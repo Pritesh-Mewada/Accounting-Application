@@ -27,7 +27,16 @@ var App=angular.module('starter', ['starter.controllers','ui.router','ngMaterial
       templateUrl: 'templates/Receipt.html',
       controller:'receipt'
       
-  });;
+  }).state('evaluate', {
+      url: '/evaluate',
+      templateUrl: 'templates/evaluate.html',
+      controller:'evaluate'
+      
+  }).state('print', {
+    url: '/print',
+    templateUrl: 'templates/print.html',
+    controller:'print'
+  });
 
 
   // if none of the above states are matched, use this as the fallback
@@ -61,6 +70,18 @@ App.factory('GetService', function($http){
 });
 
 App.factory('DataPasser',function(){
+    var dataPasser ={};
+    dataPasser.setData=function(data){
+        this.data = data;
+    }
+    dataPasser.getData=function(){
+        return this.data;
+    }
+
+    return dataPasser;
+});
+
+App.factory('PrintPasser',function(){
     var dataPasser ={};
     dataPasser.setData=function(data){
         this.data = data;

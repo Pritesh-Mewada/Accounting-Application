@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Print</title>
+</head>
+<body>
+	<br>
+	<center>
+		<h2>Pooja Jewellers</h2>	
+		<div ng-switch="show">
+		  <div ng-switch-when="issue">
+			<table>
+		  		<tr>
+		    		<th>Date</th>
+		    		<th>Gr.Wt</th>
+		    		<th>Fine</th>
+		    		<th>Fine.Wt</th>
+		  			<th>Cmmt</th>
+		  		</tr>
+				<tr ng-repeat="profile in profiles">
+			    	<td>{{getDate(profile.date)}}</td>
+			    	<td>{{profile.grossweight}}</td>
+			    	<td>{{profile.fine}}</td>
+			    	<td>{{profile.fineweight}}</td>
+			    	<td>{{profile.comment}}</td>
+			  	</tr>
+	  		</table>    
+		  </div>
+		  <div ng-switch-when="receipt">
+		    <table>
+		  		<tr>
+		    		<th>Date</th>
+		    		<th>Gr.Wt</th>
+		    		<th>Fine</th>
+		    		<th>Wastage</th>
+		    		<th>Fine.Wt</th>
+		  			<th>Cmmt</th>
+		  		</tr>
+				<tr ng-repeat="profile in profiles">
+			    	<td>{{getDate(profile.date)}}</td>
+			    	<td>{{profile.grossweight}}</td>
+			    	<td>{{profile.fine}}</td>
+			    	<td>{{profile.wastage}}</td>
+			    	<td>{{profile.fineweight}}</td>
+			    	<td>{{profile.comment}}</td>
+			  	</tr>
+	  		</table>    
+		  </div>
+		  <div ng-switch-when="evaluate">
+		    <table>
+		  		<tr>
+		    		<th>Date</th>
+		    		<th>Fine.Wt</th>
+		  			<th>Type</th>
+		  		</tr>
+				<tr ng-repeat="profile in profiles">
+			    	<td>{{getDate(profile.date)}}</td>
+			    	<td>{{profile.fineweight}}</td>
+			    	<td>{{profile.type}}</td>
+			  	</tr>
+	  		</table>    
+		  </div>
+		 </div>
+		
+ </center>
+</body>
+</html>
