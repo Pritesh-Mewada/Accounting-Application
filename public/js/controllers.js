@@ -78,7 +78,7 @@ control.controller('profile',function ($scope,GetService,$state,$mdDialog,$mdMen
     }
 });
 
-control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetService,$rootScope,PrintPasser,$state){
+control.controller('receipt',function($scope,$mdDialog,DataPasser,PostService,GetService,$rootScope,PrintPasser,$state){
     $scope.mainData=[];
     $scope.profiles=[];
     $scope.data={};
@@ -157,9 +157,11 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
     var calcFineWeight = function(){
       $scope.fineWeight ="";
       var temp=0;
+      
       for(var i=0;i<$scope.profiles.length;i++){
           temp = temp + $scope.profiles[i].fineweight;
-        }
+      }
+
       $scope.fineWeight = temp;
 
     }
@@ -172,10 +174,11 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
     },function(error){
       console.log(error);
     })
+    
     $scope.showAdvanced = function(ev) {
         $mdDialog.show({
           controller: 'modalcontrol',
-          templateUrl: 'js/issue-dialogue.html',
+          templateUrl: 'js/receipt-dialogue.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose:true,
@@ -202,7 +205,7 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
           type:model.type,
           name:model.name,
           index:model.index,
-
+          return:model.return
         };
         return profile;
     }
@@ -238,11 +241,9 @@ control.controller('issue',function($scope,$mdDialog,DataPasser,PostService,GetS
           }
         }
         calcFineWeight();
-
       }
-
-
 })
+
 control.controller('modalcontrol' ,function($scope,$mdDialog,PostService,DataPasser,$rootScope){
   $scope.profile = {
     grossweight:'',
@@ -280,10 +281,10 @@ control.controller('modalcontrol' ,function($scope,$mdDialog,PostService,DataPas
         return;
       }
 
-      if($scope.profile.type=='issue'){
-        $scope.profile.fineweight =  ($scope.profile.fine ) * $scope.profile.grossweight/100;
+      if($scope.profile.type=='receipt'){
+          $scope.profile.fineweight =  (($scope.profile.fine +$scope.profile.wastage) * $scope.profile.grossweight )/100;
       }else{
-        $scope.profile.fineweight =  (($scope.profile.fine +$scope.profile.wastage) * $scope.profile.grossweight )/100;
+          $scope.profile.fineweight =  (($scope.profile.fine +$scope.profile.return) * $scope.profile.grossweight )/100;
       }
       
       $scope.profile.date = $scope.profile.dateInput.getFullYear()+"-"+($scope.profile.dateInput.getMonth()+1)+"-"+$scope.profile.dateInput.getDate()
@@ -331,7 +332,7 @@ control.controller('modalcontrol' ,function($scope,$mdDialog,PostService,DataPas
 
 });
 
-control.controller('receipt',function($scope,DataPasser,GetService,$rootScope,$mdDialog,PostService,$state,PrintPasser){
+control.controller('issue',function($scope,DataPasser,GetService,$rootScope,$mdDialog,PostService,$state,PrintPasser){
   $scope.profiles=[];
   $scope.mainData=[];
   $scope.profile = DataPasser.getData();
@@ -433,7 +434,7 @@ control.controller('receipt',function($scope,DataPasser,GetService,$rootScope,$m
   $scope.showAdvanced = function(ev) {
     $mdDialog.show({
       controller: 'modalcontrol',
-      templateUrl: 'js/receipt-dialogue.html',
+      templateUrl: 'js/issue-dialogue.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,

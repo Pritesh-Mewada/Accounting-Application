@@ -12,13 +12,15 @@ app.get('/',function(req,res){
 });
 
 app.post('/create',function(req,response){
-  
   var MongoClient = mongodb.MongoClient;
   var url = 'mongodb://localhost:27017/nilashish';
+  
   console.log(req.body);
+  
   MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected successfully to server");
+  
   var collection = db.collection('profile');
     collection.insert(req.body,function(err,res){
       if(err){
@@ -29,7 +31,6 @@ app.post('/create',function(req,response){
         response.send("Success");
         db.close();
       }
-    
     })
   });
 });
@@ -95,7 +96,6 @@ app.get('/profiles',function(req,response){
 });
 
 app.post('/delete/:profile',function(req,response){
-  
   var MongoClient = mongodb.MongoClient;
   var url = 'mongodb://localhost:27017/nilashish';
   console.log(req.body);
@@ -161,8 +161,8 @@ app.get('/all/:name',function(req,response){
   })
 });
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '192.168.0.9';
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '192.168.0.8';
 app.listen(server_port,server_ip_address,()=>{
   console.log("hello i am started");
 })

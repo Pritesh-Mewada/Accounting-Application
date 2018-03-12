@@ -3,7 +3,6 @@
     <center>
         <h1>Issue-<strong>{{name}}</strong></h1>
     </center>
-    
     <div>
         <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" >
             <md-grid-tile md-colspan="5" md-colspan-xs="10"  md-rowspan="1" >
@@ -13,9 +12,8 @@
                     <md-datepicker ng-model="data.to" md-placeholder="To date" ng-change="sortDate()"></md-datepicker>
             </md-grid-tile>
         </md-grid-list>
-        <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" >
-
-           <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+        <md-grid-list md-cols="12" md-gutter="5px" md-row-height="50px" >
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>Date</h4>
             </md-grid-tile>
             <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
@@ -25,14 +23,16 @@
                 <h4>Fine</h4>
             </md-grid-tile>
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
-                <h4>Fine.Wt</h4>
+                <h4>Wastage</h4>
             </md-grid-tile>
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>Fine.wt</h4>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>Cmmt</h4>
             </md-grid-tile>
-            
         </md-grid-list>
-        <md-grid-list md-cols="10" md-gutter="5px" md-row-height="50px" ng-repeat ="profile in profiles" ng-dblclick="edit(profile,$index)" >
+        <md-grid-list md-cols="12" md-gutter="5px" md-row-height="50px" ng-repeat =" profile in profiles" ng-dblclick="edit(profile,$index)" >
 
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
                 <h4>{{getDate(profile.date)}}</h4>
@@ -44,20 +44,19 @@
                 <h4>{{profile.fine}}</h4>
             </md-grid-tile>
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
-                <h4>{{profile.fineweight}}</h4>
+                <h4>{{profile.wastage}}</h4>
             </md-grid-tile>
            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
-                <h4>{{profile.comment}}</h4>
-                <img  ng-show="data.visible" src="img/icons/error.svg" width="24px" height="24px" class="cancel" ng-click="showConfirm($event,profile._id,$index)"></img>
+                <h4>{{profile.fineweight}}</h4>
             </md-grid-tile>
-            
-        
+            <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
+                <h4>{{profile.comment}}</h4>
+                <img ng-show="data.visible" src="img/icons/error.svg" width="24px" height="24px" class="cancel" ng-click="showConfirm($event,profile._id,$index)"></img>
+            </md-grid-tile>
         </md-grid-list>
         <center>
             <label class="themeFont" >Your total fine weight&nbsp&nbsp&nbsp</label><label class="themeFont" style="color: green;">{{fineWeight}}</label>
         </center>
-        
-    
     </div>
     <md-grid-list md-cols="6" md-gutter="5px" md-row-height="50px">
         <md-grid-tile md-colspan="2" md-colspan-xs="2"  md-rowspan="1" >
@@ -71,5 +70,4 @@
         </md-grid-tile>
     </md-grid-list>
     <br><br>
-
 </div>
